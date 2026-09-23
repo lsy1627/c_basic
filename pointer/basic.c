@@ -1,4 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+//定义一个函数，拷贝字符串
+void mystrcpy(char *dest,const char *src){
+    while(*src != '\0'){
+        *dest++ = *src++;
+    }
+    *dest = '\0';
+}
+
+//定义一个函数，交换两个整数的值
+void exchange(int *p1,int *p2){
+    int temp;
+    temp = *p1;
+    *p1 = *p2;
+    *p2 = temp;
+}
 
 int main(){
     //-------------单独指针------------//
@@ -25,7 +42,44 @@ int main(){
     printf("b的地址:%p\n",&b);
     printf("p1:%p\n",p1);
 
+    
+    //----------------指针运算--------------//
+    int c = 3,y=0,*p2=&c;
+    int x = 0,z = 0;
+    y = *p2 + 1; //y=4
+    printf("p2:%p\n",p2); 
+    printf("y:%d\n",y);
+    x = ++*p2; //++(*p2)；对 *p2（即 c）自增，p2 不动
+    printf("x:%d\n",x);
+    z = *p2++; //*(p2++),p2指向c的下一个地址;*对旧值解引用→读 4
+    printf("p2:%p\n",p2); 
+    printf("z:%d\n",z);
+
+    char s1[32] = "hello";
+    char s2[32] = {0};
+    mystrcpy(s2,s1);
+    printf("s2:%s\n",s2);
+
+
+    //-------------空指针和野指针------------//
+    int *p3 = NULL; //空指针
+    // int *p4; //野指针，未初始化
+    //如何合法地使用指针：
+    //1.系统分配的内存空间
+        //int a;
+        // int *p = &a;
+    //2.用户申请的内存空间（堆内存）
+        //malloc，本身返回的是void*，所以要强制类型转换
+        //int *p = (int*)malloc(sizeof(int));
+        //释放内存，如果不释放，会造成内存泄漏
+        //free(p);
+        //p = NULL; //释放后，指针置空，避免野指针
+
+
     //------------指针做函数参数------------//
     int num_1 = 1,num_2 = 2;
+    exchange(&num_1,&num_2);
+    printf("num_1:%d\n",num_1);
+    printf("num_2:%d\n",num_2);
     return 0;
 }
