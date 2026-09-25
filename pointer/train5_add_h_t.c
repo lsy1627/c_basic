@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//对字符串添加帧头帧尾
 char *add_h_t(char *src){
     const char *h = "head";
     const char *t = "tail";
-    char *out = (char*)malloc(128);
+    char *out = (char*)malloc(128); //作为返回的数组
     char *p = out;
     char *q = h;
-    while(*q != '\0') *p++ = *q++;
+    while(*q != '\0') *p++ = *q++; //将帧头添加过去
     q = src;
-    while(*q != '\0') *p++ = *q++;
+    while(*q != '\0') *p++ = *q++; //将内容写入out
     q = t;
-    while(*q != '\0') *p++ = *q++;
+    while(*q != '\0') *p++ = *q++; //将帧尾添加上
 
     *p = '\0';
     return out;

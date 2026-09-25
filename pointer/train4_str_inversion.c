@@ -22,7 +22,7 @@ char *Inver_Str(char *src){
         *end = temp;
         start ++;
         end --;
-    }//此时字符串变为: I ma morf iahgnahs
+    }//此时字符串变为: iahgnahs morf ma I
 
     //步骤二：反转每一个单词
     char *p = src;

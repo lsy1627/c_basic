@@ -6,13 +6,13 @@ char *only (char *src){
     char *buf = (char*)malloc(128);
     char *end = buf;
     for (char *p = src;*p != '\0';p++){
-        int count = 0;
+        int count = 0; //字符出现的次数
         for(char *q = src;*q != '\0';q++){
             if(*p == *q){
                 count ++;
             }
         }
-        if(count == 1){
+        if(count == 1){ //为1则无重复
             *end = *p;
             end ++;
         }
