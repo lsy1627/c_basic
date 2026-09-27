@@ -34,6 +34,21 @@ typedef struct Boy
     //......
 } Boy;
 
+//---------------结构体指针作为函数参数--------------------//
+/*
+*1.在后续使用结构体中的对象时候需要用  ->  而不能用 . 来进行访问
+*2.使用指针作为函数参数的好处：
+*  使用结构体指针作为函数形参，仅传递地址，无需拷贝整个结构体，节省内存；
+*  并且可以在函数内修改实参结构体的数据，也方便操作结构体数组与链表。
+*/
+void PrintInformation(struct Student *stu1){
+    printf("name:%s,id:%d,old:%d,birthday:%d-%d-%d\n",stu1->name,stu1->id,stu1->age,
+        stu1->birthday.year,stu1->birthday.month,stu1->birthday.day);
+}
+
+
+
+
 int main()
 {
     // 标准结构体声明
@@ -45,11 +60,13 @@ int main()
     struct Student stu1 = {.id = 1, .name = "lsy", .age = 18, 
         .birthday = {.year = 2007, .month = 11, .day = 9}};
 
-    printf("name:%s,id:%d,old:%d,birthday:%d-%d-%d\n",stu1.name,stu1.id,stu1.age,
-        stu1.birthday.year,stu1.birthday.month,stu1.birthday.day);
+    struct Student *pStu = &stu1;
+    PrintInformation(pStu);
     
-        // 嵌套的结构体中的声明
+
+    // 嵌套的结构体中的声明
     stu1.birthday.year = 2007; // 需要进行多层的访问
+
 
     // typedef结构体声明
     Boy b1;
