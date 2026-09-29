@@ -33,7 +33,7 @@ int main(){
 
 
     //使用realloc调整分配的内存
-    //1、在原来mallloc和calloc分配的基础上进行调整
+    //在原来mallloc和calloc分配的基础上进行调整
     int *tmp = (int*)realloc(num1, 20 * sizeof(int));
     if(tmp == NULL){
         printf("realloc failed!\n");
