@@ -161,28 +161,7 @@ const char* strchr(const char* str, char character)
 分析：
 看最坏情况，要么是找字符串最后一个或者就是没有找到
 时间复杂度是O(N)
-（5）// 计算BubbleSort的时间复杂度？
-void BubbleSort(int* a, int n)
-{
-	assert(a); //是为了判断a是否为NULL
-	for (size_t end = n; end > 0; --end)
-	{
-		int exchange = 0;
-		for (size_t i = 1; i < end; ++i)
-		{
-			if (a[i - 1] > a[i])
-			{
-				Swap(&a[i - 1], &a[i]);
-				exchange = 1;
-			}
-		}
-		if (exchange == 0)
-			break;
-	}
-}
-分析：
-
-（6）x = 1; //频度为1
+（5）x = 1; //频度为1
 	 for (int i = 1;i<=n;i++){  //频度为n
 		for(int j =1;j<=i;j++){  //频度为n*(n-1)
 			for(int k = 1;k<=j;k++){  //
@@ -191,7 +170,9 @@ void BubbleSort(int* a, int n)
 		}
 	 }
 分析：
-i取值： 	    1    2   3  4  5 ... n
-第二层循环:     1    2   3  4  5 ... n
+n取值： 	    1    2     3  	4  	 ... n
+第二层循环:     1    3     6  	10   ... n(n+1)/2
 因此：第二层循环的频度应该为[n*(1+n)]/2
-第三层循环：
+第三层循环：	1    4	   10   20	 ... [n(n+1)(n+2)]/6
+因此：第三层循环的频度应该为[n(n+1)(n+2)]/6
+时间复杂度为:o(n3)
