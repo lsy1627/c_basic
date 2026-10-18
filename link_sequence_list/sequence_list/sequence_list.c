@@ -50,7 +50,7 @@ void interElem_my(SeqList *L,ElemType num,int pos)
         middle[i] = L->data[i];
     }
     L->data[pos - 1] = num;
-    for(int i = pos; i <= L->length; i++)         //1.46.27
+    for(int i = pos; i <= L->length; i++)     
     {
         L->data[i] = middle[i-1];
     }
