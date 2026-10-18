@@ -213,6 +213,32 @@ int isCycle(Node* node)
     return 0;
 }
 
+//2.12链表有环入口的查找
+Node* cycleStart(Node* head)
+{
+    Node *fast = head, *slow = head;
+    while(fast && fast->next){
+        fast = fast->next->next;
+        slow = slow->next;
+        if(fast == slow) break;
+    }
+    if(fast == NULL || fast->next == NULL) return NULL;
+
+    // 相遇后，一个从头出发、一个从相遇点出发，同速前进，再次相遇即入口
+    slow = head;
+    while(slow != fast){
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return slow;
+}
+/*
+（设头到入口距离 a，入口到相遇点 b，环长 L）：
+fast 走了 a + b + L，slow 走了 a + b，且 fast = 2 * slow
+→ a + b + L = 2(a + b) → a = L - b
+即"头到入口"等于"相遇点绕回入口"，所以两个指针同速再走必在入口相遇
+*/
+
 int main()
 {
     //初始化链表
@@ -242,7 +268,7 @@ int main()
     listElem(list);
     //获取链表长度
     int len = listLength(list);
-    printf("link_list length:%d\n",len);
+    printf("next_list length:%d\n",len);
 
     //反转链表
     printf("reverse the list:\n");
@@ -277,5 +303,9 @@ int main()
     {
         printf("no have circle");
     }
+
+    //查找环的入口
+    Node* intoCircle = cycleStart(circle);
+    printf("the circle start: %d\n",intoCircle->data);
     return 0;
 }
