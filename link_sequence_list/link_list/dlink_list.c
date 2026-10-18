@@ -16,6 +16,7 @@ Node* initList()
     p->prev = NULL;
     p->next = NULL;
     p->data = 0;
+    return p;
 }
 
 //3.2双向链表-头插法
